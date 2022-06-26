@@ -1,0 +1,40 @@
+@use './vars.scss' as vars;
+
+// $sys_grid_breakpoints: (
+//   xs: 0,
+//   sm: 420px,
+//   md: 768px,
+//   lg: 960px,
+//   xl: 1200px,
+//   xxl: 1400px
+//   );
+
+@mixin phone{
+  @media (min-width: map-get(vars.$sys_grid_breakpoints, "sm") ) {
+     @content
+  }
+}
+
+@mixin tablet{
+  @media (min-width: map-get(vars.$sys_grid_breakpoints, "md")) {
+     @content
+  }
+}
+
+@mixin laptop{
+  @media (min-width: map-get(vars.$sys_grid_breakpoints, "lg")) {
+     @content
+  }
+}
+
+@mixin desktop{
+  @media (min-width: map-get(vars.$sys_grid_breakpoints, "xl")) {
+     @content
+  }
+}
+
+@mixin desktop_xl{
+  @media (min-width: map-get(vars.$sys_grid_breakpoints, "xxl")) {
+     @content
+  }
+}

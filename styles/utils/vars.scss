@@ -1,0 +1,38 @@
+// --------------------------------------- FONT
+$sys_font: 'Lato', sans-serif;
+$sys_font_thin: 100;
+$sys_font_light: 300;
+$sys_font_regular: 400;
+$sys_font_bold: 700;
+
+$sys_12: 12px;
+$sys_14: 14px;
+$sys_18: 18px;
+$sys_24: 24px;
+$sys_32: 32px;
+$sys_38: 38px;
+$sys_42: 42px;
+
+//--------------------------------------- COLORS 
+$sys_info: #00A7E1; // 0, 167, 225
+$sys_light:  #ffffff;
+$sys_dark:  #292727;
+$sys_warning: #FF9F1C; // 255, 159, 28
+$sys_danger:  #FF1B1C; // 255, 27, 28
+$sys_success:   #679436; // 103, 148, 54
+$sys_oxford_blue:#061A40; // 6, 26, 64 
+$sys_pruss_blue: #003559; // 0, 53, 89
+$sys_usafa_blue: #0353A4; // 3, 83, 164
+$sys_honolulu_blue: #006DAA; //  0, 109, 170
+
+$sys_timber: #E5DADA; // 229, 218, 218
+
+// --------------------------------------- SCREEN SIZES
+$sys_grid_breakpoints: (
+  xs: 0,
+  sm: 420px,
+  md: 768px,
+  lg: 960px,
+  xl: 1200px,
+  xxl: 1400px
+  );

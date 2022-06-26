@@ -1,0 +1,152 @@
+@use './utils/vars.scss'as vars;
+@forward './utils/backgroundsTexts.scss';
+
+// ---------------- GLOBAL CONFIGS
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: vars.$sys_font;
+}
+
+a {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+legend {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+.sys_container {
+  width: 97%;
+  margin: 0 auto;
+}
+
+.sys_reset_button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  &:active{
+    transform: scale(.9);
+  }
+}
+
+hr {
+  min-height: 3px;
+}
+
+
+h1 {
+  font-size: 3rem ;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.2rem;
+}
+h4 {
+  font-size: .9rem;
+}
+
+/* breakpoints font size h1,h2,h3,h4*/
+@media (min-width: 768px ){ 
+  h1{
+    font-size: 3.5rem;
+  }
+  h2 {
+    font-size: 2.5rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+  h4 {
+    font-size:1.2rem;
+  }
+}
+
+// ---------------------------- CONFIG TOASTR
+.sys_toastr {
+  position: absolute;
+  top: 10px;
+  right: -100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-width: 15rem;
+  max-width: 30%;
+  min-height: 4rem;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: .5rem;
+  border: none;
+  box-shadow: 2px 2px 4px vars.$sys_dark;
+  animation: sys_keyframe_show_taostr linear .5s forwards;
+}
+
+@keyframes sys_keyframe_show_taostr {
+  0% {
+    right: -100%;
+  }
+
+  100% {
+    right: 10px;
+  }
+}
+
+// -------------------  antd alert classes are modified
+.ant-alert-message {
+  color: vars.$sys_light;
+  text-align: center;
+}
+
+.ant-alert-close-icon .anticon-close {
+  color: vars.$sys_light;
+}
+
+.ant-alert-info,
+.ant-alert-success,
+.ant-alert-error,
+.ant-alert-warning {
+  .ant-alert-icon {
+    color: vars.$sys_light;
+  }
+}
+
+.ant-input-affix-wrapper>input.ant-input {
+  background: transparent;
+}

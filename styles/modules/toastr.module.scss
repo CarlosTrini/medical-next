@@ -1,0 +1,64 @@
+@use '../utils//vars.scss'as vars;
+
+.toastr {
+  position: absolute;
+  top: 10px;
+  right: -100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-width: 20rem;
+  min-height: 5rem;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: .5rem;
+  color: #fff;
+  box-shadow: 2px 2px 4px vars.$sys_dark;
+  transition: all 1s ease-in-out;
+
+  &_show {
+    animation: show_toastr_animation linear .5s forwards;
+  }
+
+  &_hide {
+    animation: hide_toastr_animation linear .5s forwards;
+  }
+
+  &_progress {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+  }
+
+  &_close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+
+@keyframes show_toastr_animation {
+  0% {
+    right: -100%;
+  }
+
+  100% {
+    right: 10px;
+
+  }
+}
+
+@keyframes hide_toastr_animation {
+  0% {
+    right: 10px;
+  }
+
+  100% {
+    right: -100%;
+
+  }
+}

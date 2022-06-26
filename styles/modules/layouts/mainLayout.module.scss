@@ -1,0 +1,142 @@
+@use '../../utils/vars.scss'as vars;
+@use '../../utils/mixins.scss'as mixins;
+
+//  --- HEADER
+.header {
+  padding-top: .5rem;
+  max-height: 8rem;
+  background-color: vars.$sys_oxford_blue;
+  box-shadow: 0 0 25px vars.$sys_dark;
+
+  &_info {
+    margin-left: 9.5rem;
+
+    @include mixins.tablet {
+      margin-left: 8.5rem;
+    }
+  }
+
+  &_info_title{
+    width: 100%
+  }
+
+  &_title {
+    position: absolute;
+    display: flex;
+    gap: 5px;
+    top: 19px;
+    left: 10px
+  }
+
+  &_move_left {
+    margin-left: -98px;
+  }
+}
+
+//  --- ASIDE
+
+.aside {
+  position: absolute;
+  top: 4rem;
+  width: 10.5rem;
+  max-width: 9.5rem;
+  height: calc(100vh - 5rem); // -3rem -> se resta el top: 3rem + 1 para el footer
+  border-radius: 10px;
+  background: rgb(6, 26, 64);
+  background: linear-gradient(90deg, rgba(6, 26, 64, 1) 0%, rgba(0, 53, 89, 1) 100%);
+  box-shadow: -2px 0 25px vars.$sys_dark;
+  
+
+  &_avatar {
+    border-radius: 50%;
+    border: 3px solid vars.$sys_light !important;
+  }
+
+  &_links {
+    li {
+      display: flex;
+      padding: .6rem .6rem;
+    }
+
+    a {
+      margin-left: .5rem;
+      font-size: vars.$sys_14;
+      color: vars.$sys_light;
+      font-weight: vars.$sys_font_bold;
+    }
+  }
+
+
+  &_options {
+    position: absolute;
+    top: 85px;
+    left: 20px;
+    z-index: 10;
+    overflow: hidden;
+    border-radius: .5rem;
+    background-color: vars.$sys_light;
+    box-shadow:0 2px 5px vars.$sys_dark;
+    visibility: hidden;
+
+    ul {
+      li {
+        a {
+          display: block;
+          width: 8rem;
+          padding: .5rem;
+          font-size: vars.$sys_14;
+          font-weight: vars.$sys_font_bold;
+          color: vars.$sys_oxford_blue;
+
+          &:hover {
+            background-color: vars.$sys_usafa_blue;
+            color: vars.$sys_light;
+          }
+        }
+      }
+    }
+  }
+
+  &_options_responsive {
+    top: 60px;
+  }
+
+  &_options_show {
+    visibility: visible;
+  }
+
+  &_active {
+    background: rgb(6, 26, 64);
+    background: linear-gradient(0deg, rgba(6, 26, 64, 1) 0%, rgba(0, 109, 170, 1) 100%);
+  }
+}
+
+.aside_hide {
+  width: 3rem !important;
+}
+
+//  --- MAIN
+
+.main {
+  max-height: calc(100vh - 7.5rem);
+  overflow-x: auto;
+  padding-top: 0.5rem;
+  padding-left: 10.5rem;
+
+  @include mixins.tablet {
+    max-height: calc(100vh - 8.5rem);
+  }
+}
+
+.main_collapse {
+  padding-left: 3.5rem;
+  overflow-x: auto;
+}
+
+//  --- FOOTER
+
+.footer {
+  width: 100%;
+  min-height: 2rem;
+  background-color: vars.$sys_oxford_blue;
+}

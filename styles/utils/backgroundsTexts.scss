@@ -1,0 +1,104 @@
+@use './vars.scss' as vars;
+
+// ------------------------ BACKGROUDS 
+.sys_bg_light {
+  background-color: vars.$sys_light;
+}
+
+.sys_bg_dark {
+  background-color: vars.$sys_dark;
+}
+.sys_bg_error {
+  background-color: vars.$sys_danger;
+}
+
+.sys_bg_success {
+  background-color: vars.$sys_success;
+}
+
+.sys_bg_warning {
+  background-color: vars.$sys_warning;
+}
+
+
+.sys_bg_info {
+  background-color: vars.$sys_info;
+}
+
+.sys_bg_oxford_blue {
+  background-color: vars.$sys_oxford_blue;
+}
+
+.sys_bg_pruss_blue {
+  background-color: vars.$sys_pruss_blue;
+}
+
+.sys_bg_usafa_blue {
+  background-color: vars.$sys_usafa_blue;
+}
+
+.sys_bg_honolulu_blue {
+  background-color: vars.$sys_honolulu_blue;
+}
+
+// --------------------------- FONTS COLOR
+.sys_txt_light {
+  color: vars.$sys_light;
+}
+
+.sys_txt_dark {
+  color: vars.$sys_dark;
+}
+
+.sys_txt_error {
+  color: vars.$sys_danger;
+}
+
+.sys_txt_success {
+  color: vars.$sys_success;
+}
+
+.sys_txt_warning {
+  color: vars.$sys_warning;
+}
+
+.sys_txt_info {
+  color: vars.$sys_info;
+}
+
+.sys_txt_oxford_blue {
+  color: vars.$sys_oxford_blue;
+}
+
+.sys_txt_pruss_blue {
+  color: vars.$sys_pruss_blue;
+}
+
+.sys_txt_usafa_blue {
+  color: vars.$sys_usafa_blue;
+}
+
+.sys_txt_honolulu_blue {
+  color: vars.$sys_honolulu_blue;
+}
+
+// ----------------------- FONT SIZES
+.sys_fs_12 {
+  font-size: vars.$sys_12!important;
+}
+
+.sys_fs_18 {
+  font-size: vars.$sys_18;
+}
+
+.sys_fs_24 {
+  font-size: vars.$sys_24;
+}
+
+.sys_fs_32 {
+  font-size: vars.$sys_32;
+}
+
+.sys_fs_38 {
+  font-size: vars.$sys_38;
+}
