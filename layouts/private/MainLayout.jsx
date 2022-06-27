@@ -1,43 +1,42 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import hamburguer from '@/images/icons/hamburguer.svg';
-import door from '@/images/icons/door.svg';
-import simbol from '@/images/icons/simbol.svg';
-import dash from '@/images/icons/dash.svg';
-import user from '@/images/icons/user.svg';
-import users from '@/images/icons/users.svg';
-import medical from '@/images/icons/medical.svg';
-import book from '@/images/icons/book.svg';
-import down from '@/images/icons/down.svg';
-import temp from '@/images/icons/avatar.svg';
 import styles from '@/styles/modules/layouts/mainLayout.module.scss';
 
 const MainLayout = ({ children }) => {
+  const router = useRouter();
+
   const [showOpt, setShowOpt] = useState(false);
-  const [collapse, setCollapse] = useState(true);
-  const [showToggle, setShowToggle] = useState(false);
+  const [collapse, setCollapse] = useState(false);
 
   const handleOptions = () => setShowOpt(!showOpt);
   const handleCollapse = () => setCollapse(!collapse);
 
+  // add the active class in the link
   useEffect(() => {
-    if (window.innerWidth < 768) {
-      setCollapse(true);
-      setShowToggle(false);
-    } else {
-      setCollapse(false);
-      setShowToggle(true);
+    const links = ['dashboard', 'profile', 'patients', 'doctors', 'schedule'];
+    const currentPath = router.pathname;
+    for (const link of links) {
+      if (currentPath.indexOf(link) !== -1) {
+        document.getElementById(link).classList.add(styles.aside_active);
+        break;
+      }
     }
-  }, []);
+  }, [router.pathname]);
 
   return (
     <>
       <header className={` sys_txt_light ${styles.header}`}>
         <div className={`sys_container ps-2`}>
           <div className={`${styles.header_title}`}>
-            <Image src={simbol} alt='medical icon' width={20} height={20} />
+            <Image
+              src='/images/icons/simbol.svg'
+              alt='medical icon'
+              width={20}
+              height={20}
+            />
             <h1 className='fs-6  sys_txt_light'>Social Medical</h1>
           </div>
 
@@ -46,12 +45,12 @@ const MainLayout = ({ children }) => {
               className={`d-flex justify-content-between align-items-center`}
             >
               <button
-                className={`sys_reset_button ${!showToggle && 'd-none'}`}
+                className={`${styles.header_collapse}  sys_reset_button`}
                 title='Ocultar Menú'
                 onClick={handleCollapse}
               >
                 <Image
-                  src={hamburguer}
+                  src='/images/icons/hamburguer.svg'
                   alt='ocultar menú button'
                   width={30}
                   height={30}
@@ -68,7 +67,7 @@ const MainLayout = ({ children }) => {
                 </div>
                 <button className='sys_reset_button' title='salir'>
                   <Image
-                    src={door}
+                    src='/images/icons/door.svg'
                     alt='cerrar sesión button'
                     width={30}
                     height={30}
@@ -80,8 +79,8 @@ const MainLayout = ({ children }) => {
             <div>
               <div
                 className={`d-flex justify-content-between align-items-center mt-1 ${
-                  collapse && styles.header_move_left
-                }`}
+                  styles.header_left
+                } ${collapse && styles.header_move_left}`}
               >
                 <section>
                   <h3 className=' sys_txt_light fw-bold'>Dr. Takeshi</h3>
@@ -99,20 +98,30 @@ const MainLayout = ({ children }) => {
       <aside className={`${styles.aside} ${collapse && styles.aside_hide}`}>
         <div className='text-center mt-2'>
           <Image
-            src={temp}
+            src='/images/avatar.svg'
             alt='foto perfil'
-            width={collapse ? 25 : 50}
-            height={collapse ? 25 : 50}
+            width={collapse ? 25 : 35}
+            height={collapse ? 25 : 35}
             className={`${styles.aside_avatar}`}
           />
           <div className='d-flex justify-content-center'>
             {!collapse && (
-              <p className='fw-bold sys_txt_light sys_fs_12 me-2'>Bienvenid@</p>
+              <p
+                className={`fw-bold sys_txt_light sys_fs_12 me-2 ${styles.aside_welcome}`}
+              >
+                Bienvenid@
+              </p>
             )}
 
             <button className='sys_reset_button' onClick={handleOptions}>
-              <Image src={down} alt='dashboard icon' width={10} height={15} />
+              <Image
+                src='/images/icons/down.svg'
+                alt='dashboard icon'
+                width={10}
+                height={15}
+              />
             </button>
+
             {/* menu button */}
             <div
               className={`${styles.aside_options} ${
@@ -137,111 +146,89 @@ const MainLayout = ({ children }) => {
         </div>
         <div>
           {/* MENU NO RESPONSIVE */}
-          <ul className={`${styles.aside_links} ${collapse && 'd-none'} `}>
-            <li className={`${styles.aside_active}`}>
-              <Image src={dash} alt='dashboard icon' width={15} height={15} />
-              <Link href='#'>
-                <a>Dashboard</a>
-              </Link>
-            </li>
+          <ul className={`${styles.aside_links}`}>
             <li>
-              <Image src={user} alt='dashboard icon' width={15} height={15} />
-              <Link href='#'>
-                <a>Perfil</a>
-              </Link>
-            </li>
-            <li>
-              <Image src={users} alt='dashboard icon' width={15} height={15} />
-              <Link href='#'>
-                <a>Pacientes</a>
-              </Link>
-            </li>
-            <li>
-              <Image
-                src={medical}
-                alt='dashboard icon'
-                width={15}
-                height={15}
-              />
-              <Link href='#'>
-                <a>Médicos</a>
-              </Link>
-            </li>
-            <li>
-              <Image src={book} alt='dashboard icon' width={15} height={20} />
-              <Link href='#'>
-                <a>Agenda</a>
-              </Link>
-            </li>
-          </ul>
-
-          {/* MENU SI RESPONSIVE */}
-          <ul className={`${styles.aside_links} ${!collapse && 'd-none'} `}>
-            <li className={`${styles.aside_active}`}>
-              <Link href='#'>
-                <button className='sys_reset_button'>
+              <Link href='/medical/dashboard' passHref>
+                <a id='dashboard'>
                   <Image
-                    src={dash}
+                    src='/images/icons/dash.svg'
                     alt='dashboard icon'
                     width={15}
                     height={15}
                   />
-                </button>
+                  {!collapse && (
+                    <span className={`${styles.aside_link}`}>Dashboard</span>
+                  )}
+                </a>
               </Link>
             </li>
             <li>
-              <Link href='#'>
-                <button className='sys_reset_button'>
+              <Link href='/medical/profile/update' passHref>
+                <a id='profile'>
                   <Image
-                    src={user}
+                    src='/images/icons/user.svg'
                     alt='dashboard icon'
                     width={15}
                     height={15}
                   />
-                </button>
+                  {!collapse && (
+                    <span className={`${styles.aside_link}`}>Perfil</span>
+                  )}
+                </a>
               </Link>
             </li>
             <li>
-              <Link href='#'>
-                <button className='sys_reset_button'>
+              <Link href='/medical/patients'>
+                <a id='patients'>
                   <Image
-                    src={users}
+                    src='/images/icons/users.svg'
                     alt='dashboard icon'
                     width={15}
                     height={15}
                   />
-                </button>
+                  {!collapse && (
+                    <span className={`${styles.aside_link}`}>Pacientes</span>
+                  )}
+                </a>
               </Link>
             </li>
             <li>
-              <Link href='#'>
-                <button className='sys_reset_button'>
+              <Link href='/medical/doctors'>
+                <a id='doctors'>
                   <Image
-                    src={medical}
+                    src='/images/icons/medical.svg'
                     alt='dashboard icon'
                     width={15}
                     height={15}
                   />
-                </button>
+                  {!collapse && (
+                    <span className={`${styles.aside_link}`}>Médicos</span>
+                  )}
+                </a>
               </Link>
             </li>
             <li>
-              <Link href='#'>
-                <button className='sys_reset_button'>
+              <Link href='/medical/book'>
+                <a id='schedule'>
                   <Image
-                    src={book}
+                    src='/images/icons/book.svg'
                     alt='dashboard icon'
                     width={15}
                     height={15}
                   />
-                </button>
+                  {!collapse && (
+                    <span className={`${styles.aside_link}`}>Agenda</span>
+                  )}
+                </a>
               </Link>
             </li>
           </ul>
         </div>
       </aside>
 
-      <main className={`${styles.main} ${collapse && styles.main_collapse}`}>{children}</main>
+      <main className={`${styles.main} ${collapse && styles.main_collapse}`}>
+        {children}
+      </main>
 
       <footer className={`${styles.footer}`}></footer>
     </>

@@ -8,6 +8,15 @@
   background-color: vars.$sys_oxford_blue;
   box-shadow: 0 0 25px vars.$sys_dark;
 
+  &_left {
+    margin-left: -98px;
+
+    @include mixins.tablet {
+      margin-left: 0;
+    }
+  }
+
+
   &_info {
     margin-left: 9.5rem;
 
@@ -16,8 +25,16 @@
     }
   }
 
-  &_info_title{
+  &_info_title {
     width: 100%
+  }
+
+  &_collapse {
+    display: none;
+
+    @include mixins.tablet {
+      display: block;
+    }
   }
 
   &_title {
@@ -37,46 +54,73 @@
 
 .aside {
   position: absolute;
-  top: 4rem;
-  width: 10.5rem;
-  max-width: 9.5rem;
-  height: calc(100vh - 5rem); // -3rem -> se resta el top: 3rem + 1 para el footer
+  top: 3.5rem;
+  width: 3rem;
+  width: 3.5rem;
+  height: calc(100vh - 5rem); // -5rem -> se resta el top: 3.5rem + 1.5 para el footer
   border-radius: 10px;
   background: rgb(6, 26, 64);
   background: linear-gradient(90deg, rgba(6, 26, 64, 1) 0%, rgba(0, 53, 89, 1) 100%);
   box-shadow: -2px 0 25px vars.$sys_dark;
-  
+
+  @include mixins.tablet {
+    width: 10.5rem;
+    max-width: 9.5rem;
+  }
 
   &_avatar {
     border-radius: 50%;
     border: 3px solid vars.$sys_light !important;
   }
 
-  &_links {
-    li {
-      display: flex;
-      padding: .6rem .6rem;
-    }
+  &_welcome {
+    display: none;
 
+    @include mixins.tablet {
+      display: block;
+    }
+  }
+
+  &_links {
     a {
-      margin-left: .5rem;
+      display: flex;
+      justify-content: center;
+      gap: .5rem;
+      width: 100%;
+      padding: .6rem .6rem;
       font-size: vars.$sys_14;
       color: vars.$sys_light;
       font-weight: vars.$sys_font_bold;
+
+      @include mixins.tablet {
+        justify-content: start;
+      }
+    }
+  }
+
+  &_link {
+    display: none;
+
+    @include mixins.tablet {
+      display: block;
     }
   }
 
 
   &_options {
     position: absolute;
-    top: 85px;
+    top: 65px;
     left: 20px;
     z-index: 10;
     overflow: hidden;
     border-radius: .5rem;
     background-color: vars.$sys_light;
-    box-shadow:0 2px 5px vars.$sys_dark;
+    box-shadow: 0 2px 5px vars.$sys_dark;
     visibility: hidden;
+
+    @include mixins.tablet {
+      top: 70px;
+    }
 
     ul {
       li {
@@ -113,24 +157,35 @@
 
 .aside_hide {
   width: 3rem !important;
+
+  .aside_links {
+    a {
+      justify-content: center;
+    }
+  }
 }
 
 //  --- MAIN
 
 .main {
+  min-height: calc(100vh - 7.5rem);
   max-height: calc(100vh - 7.5rem);
-  overflow-x: auto;
+  overflow-y: auto;
   padding-top: 0.5rem;
-  padding-left: 10.5rem;
+  padding-left: 4.3rem;
+  padding-right: 1rem;
+
 
   @include mixins.tablet {
+    min-height: calc(100vh - 8.5rem);
     max-height: calc(100vh - 8.5rem);
+    padding-left: 10.5rem;
+
   }
 }
 
 .main_collapse {
   padding-left: 3.5rem;
-  overflow-x: auto;
 }
 
 //  --- FOOTER
