@@ -10,9 +10,11 @@ const MainLayout = ({ children }) => {
 
   const [showOpt, setShowOpt] = useState(false);
   const [collapse, setCollapse] = useState(false);
+  const [showMenuResp, setshowMenuResp] = useState(false);
 
   const handleOptions = () => setShowOpt(!showOpt);
   const handleCollapse = () => setCollapse(!collapse);
+  const handleToggleRes = () => setshowMenuResp(!showMenuResp);
 
   // add the active class in the link
   useEffect(() => {
@@ -95,7 +97,7 @@ const MainLayout = ({ children }) => {
         </div>
       </header>
 
-      <aside className={`${styles.aside} ${collapse && styles.aside_hide}`}>
+      <aside className={`${styles.aside} ${collapse && styles.aside_hide} ${showMenuResp && styles.aside_show_resp}`}>
         <div className='text-center mt-2'>
           <Image
             src='/images/avatar.svg'
@@ -107,7 +109,7 @@ const MainLayout = ({ children }) => {
           <div className='d-flex justify-content-center'>
             {!collapse && (
               <p
-                className={`fw-bold sys_txt_light sys_fs_12 me-2 ${styles.aside_welcome}`}
+                className={`fw-bold sys_txt_light sys_fs_12 me-2`}
               >
                 Bienvenid@
               </p>
@@ -230,7 +232,13 @@ const MainLayout = ({ children }) => {
         {children}
       </main>
 
-      <footer className={`${styles.footer}`}></footer>
+      <footer className={`${styles.footer}`}>
+        <button className={`${styles.reset_button} ${styles.menu_responsive}`}
+        onClick={handleToggleRes}
+        >
+          <img src='/images/icons/hamburguer.svg' alt="show menu responsive"/>
+        </button>
+      </footer>
     </>
   );
 };

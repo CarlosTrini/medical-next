@@ -53,18 +53,22 @@
 //  --- ASIDE
 
 .aside {
-  position: absolute;
-  top: 3.5rem;
-  width: 3rem;
-  width: 3.5rem;
-  height: calc(100vh - 5rem); // -5rem -> se resta el top: 3.5rem + 1.5 para el footer
+  position: fixed;
+  // top: 3.5rem;
+  bottom: 5px;
+  left:0;
+  width: 0;
+  overflow: hidden;
+  height: 75vh;
   border-radius: 10px;
   background: rgb(6, 26, 64);
   background: linear-gradient(90deg, rgba(6, 26, 64, 1) 0%, rgba(0, 53, 89, 1) 100%);
   box-shadow: -2px 0 25px vars.$sys_dark;
 
   @include mixins.tablet {
-    width: 10.5rem;
+    top: 3.5rem;
+    height: calc(100vh - 5rem); // -5rem -> se resta el top: 3.5rem + 1.5 para el footer
+    width: 9.5rem;
     max-width: 9.5rem;
   }
 
@@ -73,18 +77,12 @@
     border: 3px solid vars.$sys_light !important;
   }
 
-  &_welcome {
-    display: none;
 
-    @include mixins.tablet {
-      display: block;
-    }
-  }
 
   &_links {
     a {
       display: flex;
-      justify-content: center;
+      justify-content: start;
       gap: .5rem;
       width: 100%;
       padding: .6rem .6rem;
@@ -97,15 +95,6 @@
       }
     }
   }
-
-  &_link {
-    display: none;
-
-    @include mixins.tablet {
-      display: block;
-    }
-  }
-
 
   &_options {
     position: absolute;
@@ -155,6 +144,10 @@
   }
 }
 
+.aside_show_resp {
+  width: 9.5rem !important;
+}
+
 .aside_hide {
   width: 3rem !important;
 
@@ -168,11 +161,11 @@
 //  --- MAIN
 
 .main {
-  min-height: calc(100vh - 7.5rem);
-  max-height: calc(100vh - 7.5rem);
+  min-height: calc(100vh - 7.6rem);
+  max-height: calc(100vh - 7.6rem);
   overflow-y: auto;
   padding-top: 0.5rem;
-  padding-left: 4.3rem;
+  padding-left: 1rem;
   padding-right: 1rem;
 
 
@@ -194,4 +187,23 @@
   width: 100%;
   min-height: 2rem;
   background-color: vars.$sys_oxford_blue;
+
+  .menu_responsive {
+    position: fixed;
+    width: 3rem;
+    height: 3rem;
+    bottom: 5px;
+    right: 0;
+    border-radius: 50%;
+    border: none;
+    background-color: vars.$sys_oxford_blue;
+
+    @include mixins.tablet {
+      display: none;
+    }
+
+    img {
+      width: 1.5rem;
+    }
+  }
 }
